@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="es-AR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Hacete Socio ACA | Auxilio 24/7, 50% OFF y $48.000 en Combustible</title>
+  <meta name="description" content="Asociate al Automóvil Club Argentino (ACA). Disfrutá de auxilio mecánico 24/7 en todo el país, $48.000 en combustible YPF, 3 cuotas al 50% OFF y 6 cuotas con 25% de descuento. ¡Tranquilidad garantizada!" />
+  <meta name="keywords" content="ACA, Automovil Club Argentino, auxilio mecanico, seguro auto, descuento combustible, YPF, hoteles ACA, asistencia al viajero, asociate ACA" />
+  <meta name="theme-color" content="#FEC526" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:site_name" content="Automóvil Club Argentino" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hacete Socio ACA y disfrutá de un año de beneficios exclusivos" />
+  <meta property="og:description" content="Auxilio 24/7, $48.000 en combustible de regalo, 50% OFF en tus primeras 3 cuotas y red hotelera nacional." />
+  <meta property="og:image" content="assets/hero-back.png" />
+  <meta property="og:locale" content="es_AR" />
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Pathway+Extreme:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Lucide Icons & Confetti Library via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoClub",
+    "name": "Automóvil Club Argentino",
+    "alternateName": "ACA",
+    "url": "https://www.aca.org.ar",
+    "logo": "https://www.aca.org.ar/promociones/asociacion/0724/assets/logo-aca.svg",
+    "description": "El Automóvil Club Argentino brinda auxilio mecánico 24/7, seguro automotor, red hotelera y beneficios exclusivos en toda la República Argentina.",
+    "telephone": "0800-888-4222",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. del Libertador 1850",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressRegion": "CABA",
+      "postalCode": "C1425AAR",
+      "addressCountry": "AR"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP PROMOTIONAL NOTIFICATION BAR
+       ======================================================================== -->
+  <aside class="top-promo-banner" aria-label="Aviso de promoción por tiempo limitado">
+    <div class="container">
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span class="promo-tag-pill">🔥 Promo Oficial</span>
+        <span><strong>3 cuotas al 50% OFF</strong> + <strong>$48.000 en combustible YPF</strong> de regalo</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 0.8rem;">
+          <span>Finaliza en:</span>
+          <span class="countdown-timer" id="promo-countdown" aria-live="polite">Calculando...</span>
+        </div>
+        <a href="#precio" class="banner-action-link">
+          Aprovechar descuento &rarr;
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       SITE HEADER & NAVIGATION
+       ======================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <nav class="navbar" aria-label="Navegación principal">
+        
+        <!-- Brand Logo -->
+        <a href="#" class="nav-brand" aria-label="La Saeta S.R.L. - Inicio">
+          <img src="assets/logo-la-saeta.png" alt="La Saeta S.R.L. - Corredor Auxilio Mecánico La Rioja-Catamarca" class="nav-brand-logo" />
+          <span class="nav-brand-badge">OFICIAL</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
+          <li><a href="#precio" class="nav-link">Promoción & Precio</a></li>
+          <li><a href="#cobertura" class="nav-link">Cobertura</a></li>
+          <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+          <li><a href="#faq" class="nav-link">Preguntas Frecuentes</a></li>
+        </ul>
+
+        <!-- Navigation Actions -->
+        <div class="nav-actions">
+          
+          <!-- Accessibility Menu Toggle -->
+          <div style="position: relative;">
+            <button type="button" class="a11y-toggle-btn" id="a11y-menu-toggle" aria-label="Opciones de accesibilidad" title="Opciones de accesibilidad">
+              <i data-lucide="eye"></i>
+            </button>
+            <div id="a11y-dropdown" style="display: none; position: absolute; right: 0; top: 50px; background: #FFFFFF; border: 1px solid var(--aca-border); border-radius: 12px; padding: 14px; box-shadow: var(--shadow-lg); width: 230px; z-index: 70;">
+              <p style="font-size: 0.8rem; font-weight: 700; color: var(--aca-navy); margin-bottom: 8px;">ACCESIBILIDAD</p>
+              <button type="button" id="btn-toggle-contrast" style="width: 100%; text-align: left; padding: 8px 10px; font-size: 0.85rem; border-radius: 6px; display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-main);">
+                <i data-lucide="contrast" style="width: 16px;"></i> Alto Contraste
+              </button>
+              <button type="button" id="btn-toggle-font" style="width: 100%; text-align: left; padding: 8px 10px; font-size: 0.85rem; border-radius: 6px; display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-main);">
+                <i data-lucide="type" style="width: 16px;"></i> Tamaño de Letra
+              </button>
+              <button type="button" id="btn-toggle-motion" style="width: 100%; text-align: left; padding: 8px 10px; font-size: 0.85rem; border-radius: 6px; display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-main);">
+                <i data-lucide="pause-circle" style="width: 16px;"></i> Pausar Animaciones
+              </button>
+            </div>
+          </div>
+
+          <!-- Direct CTA -->
+          <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="btn btn-primary btn-sm btn-pulse" target="_blank" rel="noopener noreferrer">
+            <span>Asociate ahora</span>
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button type="button" class="mobile-nav-toggle" aria-label="Abrir menú de navegación">
+            <i data-lucide="menu"></i>
+          </button>
+        </div>
+
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ========================================================================
+         HERO SECTION (High-Impact Community Manager & Front-End Visuals)
+         ======================================================================== -->
+    <section class="hero-wrapper" aria-labelledby="hero-title">
+      <div class="hero-glow-bg"></div>
+      <div class="container">
+        
+        <div class="hero-grid">
+          
+          <!-- Left Column: Copywriting & High Conversion Value Proposition -->
+          <div class="hero-content">
+            
+            <div class="hero-trust-badge">
+              <i data-lucide="shield-check" style="width: 18px; height: 18px; color: #D97706;"></i>
+              <span>120 Años Protegiendo a los Conductores Argentinos</span>
+            </div>
+
+            <h1 id="hero-title" class="hero-title">
+              Hacete Socio ACA y disfrutá de un año de <span class="hero-title-highlight">beneficios y auxilio 24/7</span>
+            </h1>
+
+            <p class="hero-description">
+              No es solo descuentos: es la tranquilidad absoluta de saber que contás con el respaldo más completo en cada kilómetro de la Argentina. Puesta en marcha, remolque, combustible de regalo y red hotelera nacional.
+            </p>
+
+            <!-- Feature Pills / Highlights -->
+            <div class="hero-promos-strip">
+              <div class="hero-promo-item">
+                <span class="icon-check">✓</span>
+                <span><strong>50% OFF</strong> en las 3 primeras cuotas</span>
+              </div>
+              <div class="hero-promo-item">
+                <span class="icon-check">✓</span>
+                <span><strong>$48.000</strong> en combustible YPF</span>
+              </div>
+              <div class="hero-promo-item">
+                <span class="icon-check">✓</span>
+                <span><strong>25% OFF</strong> en las siguientes 6 cuotas</span>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="hero-cta-group">
+              <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+                <span>Asociate ahora con 50% OFF</span>
+                <i data-lucide="arrow-up-right" style="width: 20px; height: 20px;"></i>
+              </a>
+              <a href="#beneficios" class="btn btn-secondary btn-lg">
+                <i data-lucide="shield-check" style="width: 18px; height: 18px; color: #B45309;"></i>
+                <span>Conocé los beneficios</span>
+              </a>
+            </div>
+
+            <!-- Social Proof Bar -->
+            <div class="hero-social-proof">
+              <div class="avatar-stack">
+                <div class="avatar-item" style="background-image: url('assets/socio-aca-equipo.png'); background-size: cover;"></div>
+                <div class="avatar-item" style="background-image: url('assets/hero-back.png'); background-size: cover;"></div>
+                <div class="avatar-item" style="background-image: url('assets/auxilio-aca.png'); background-size: cover;"></div>
+              </div>
+              <div class="hero-stars">
+                <i data-lucide="star" style="width: 16px; height: 16px; fill: #F59E0B;"></i>
+                <i data-lucide="star" style="width: 16px; height: 16px; fill: #F59E0B;"></i>
+                <i data-lucide="star" style="width: 16px; height: 16px; fill: #F59E0B;"></i>
+                <i data-lucide="star" style="width: 16px; height: 16px; fill: #F59E0B;"></i>
+                <i data-lucide="star" style="width: 16px; height: 16px; fill: #F59E0B;"></i>
+              </div>
+              <div class="hero-rating-text">
+                <strong>4.9 / 5 estrellas</strong> en Google Reviews por socios satisfechos.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive 3D Visual Composition -->
+          <div class="hero-visual-card">
+            <div class="hero-card-tilt" data-tilt="true">
+              
+              <!-- Official Hero Photography -->
+              <img src="assets/hero-back.png" alt="Socios del Automóvil Club Argentino viajando tranquilos y protegidos" class="hero-image-main" fetchpriority="high" />
+
+              <!-- Floating Interactive Pill 1: Official Promo SVG -->
+              <div class="hero-badge-float-1">
+                <img src="assets/promo-aca.svg" alt="Promoción ACA" style="height: 38px; width: auto;" />
+              </div>
+
+              <!-- Floating Interactive Pill 2: Fuel Gift -->
+              <div class="hero-badge-float-2">
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: #94A3B8; font-weight: 700;">Beneficio Exclusivo</span>
+                <span class="amount">$48.000</span>
+                <span style="font-size: 0.78rem; color: #E2E8F0;">en combustible YPF de regalo</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         LIVE METRICS & KPIS COUNTERS BANNER
+         ======================================================================== -->
+    <section class="stats-banner" aria-label="Estadísticas de respaldo y cobertura del ACA">
+      <div class="container">
+        <div class="stats-grid">
+          
+          <div class="stat-item">
+            <span class="stat-number" data-counter-target="1000000" data-counter-prefix="+">+0</span>
+            <span class="stat-label">Auxilios mecánicos brindados por año</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-number">24 / 7</span>
+            <span class="stat-label">Asistencia activa los 365 días del año</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-number" data-counter-target="100" data-counter-suffix="%">0%</span>
+            <span class="stat-label">Cobertura federal en todas las rutas argentinas</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-number" data-counter-target="1000" data-counter-prefix="+">+0</span>
+            <span class="stat-label">Comercios y hoteles adheridos en el país</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PRICING & SPECIAL PROMOTION (Asociándote hoy)
+         ======================================================================== -->
+    <section class="pricing-section" id="precio" aria-labelledby="pricing-title">
+      <div class="container">
+        
+        <div class="section-head">
+          <span class="section-tag">Ahorro Inmediato</span>
+          <h2 id="pricing-title" class="section-title">Con el ACA lo importante es lo que recibís</h2>
+          <p class="section-subtitle">
+            Nuestra propuesta va más allá de un valor mensual: te brindamos la seguridad de tener un equipo a tu lado, siempre que lo necesites.
+          </p>
+        </div>
+
+        <div class="pricing-layout-grid">
+          
+          <!-- Pricing Highlight Card -->
+          <div class="pricing-card-highlight">
+            <div class="pricing-top-ribbon">Cupo Promo</div>
+
+            <!-- Official Badges Strip -->
+            <div class="pricing-badges-strip">
+              <img src="assets/50-off.svg" alt="50% OFF en 3 primeras cuotas" class="pricing-badge-img" loading="lazy" />
+              <img src="assets/promo-aca-card.svg" alt="$48.000 en combustible de regalo" class="pricing-badge-img" loading="lazy" />
+            </div>
+
+            <h3 class="pricing-plan-title">Membresía Integral Socio ACA</h3>
+            
+            <div class="pricing-figure-box">
+              <p class="pricing-starting-from">Asociándote hoy desde</p>
+              <div class="pricing-main-price" aria-label="Precio desde treinta y siete mil quinientos cincuenta pesos por mes">
+                <span class="pricing-currency">$</span>
+                <span class="pricing-amount">37.550</span>
+                <span class="pricing-frequency">/mes</span>
+              </div>
+              <span class="pricing-savings-pill">
+                ✓ 3 cuotas al 50% + 6 cuotas al 25% de ahorro
+              </span>
+            </div>
+
+            <ul class="pricing-features-list">
+              <li class="pricing-feature-item">
+                <i data-lucide="check-circle-2"></i>
+                <span><strong>Auxilio mecánico 24/7 ilimitado:</strong> mecánica ligera, remolque, cerrajería y cambio de batería en el acto.</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check-circle-2"></i>
+                <span><strong>$48.000 en combustible YPF:</strong> acreditado para usar en tus cargas habituales.</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check-circle-2"></i>
+                <span><strong>Asistencia al viajero sin costo:</strong> protección médica y de viaje para vos y tu acompañante en toda la Argentina.</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check-circle-2"></i>
+                <span><strong>Red Hotelera ACA y campings:</strong> tarifas y descuentos preferenciales en los mejores destinos del país.</span>
+              </li>
+              <li class="pricing-feature-item">
+                <i data-lucide="check-circle-2"></i>
+                <span><strong>Hasta 75% OFF en gestoría:</strong> renovación de registro, DNI y emisión de Permiso Internacional de Conducir.</span>
+              </li>
+            </ul>
+
+            <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="btn btn-primary btn-lg" style="width: 100%;" target="_blank" rel="noopener noreferrer">
+              <span>Aprovechá el descuento ahora</span>
+              <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+            </a>
+
+            <a href="http://www.aca.org.ar/condiciones/somos-equipo-4/" class="pricing-tc-link" target="_blank" rel="noopener noreferrer">
+              Ver bases y condiciones de la promoción
+            </a>
+          </div>
+
+          <!-- Comparison Table: Socio ACA vs Particular sin cobertura -->
+          <div class="comparison-card">
+            <div class="comparison-header">
+              <h3>¿Por qué asociarse al ACA es una inversión inteligente?</h3>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Mirá lo que te costaría resolver emergencias mecánicas por tu cuenta:</p>
+            </div>
+
+            <table class="comparison-table" aria-label="Comparativa de costos: Socio ACA">
+              <thead>
+                <tr>
+                  <th>Servicio / Incidente</th>
+                  <th class="col-aca" style="text-align: center;">Socio ACA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Servicio de Grúa / Remolque (100 km)</strong>
+                    <div style="font-size: 0.78rem; color: var(--aca-muted);">Auxilio en ruta de urgencia</div>
+                  </td>
+                  <td class="col-aca">INCLUIDO ($0)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Auxilio por Batería / Puesta en marcha</strong>
+                    <div style="font-size: 0.78rem; color: var(--aca-muted);">Diagnóstico y puente eléctrico 24/7</div>
+                  </td>
+                  <td class="col-aca">INCLUIDO ($0)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Asistencia Médica en Viajes (Nacional)</strong>
+                    <div style="font-size: 0.78rem; color: var(--aca-muted);">Para vos y tu acompañante</div>
+                  </td>
+                  <td class="col-aca">SIN COSTO ($0)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Combustible YPF de Bienvenida</strong>
+                    <div style="font-size: 0.78rem; color: var(--aca-muted);">Crédito de combustible directo</div>
+                  </td>
+                  <td class="col-aca">+$48.000 A FAVOR</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Descuentos en Hoteles y Comercios</strong>
+                    <div style="font-size: 0.78rem; color: var(--aca-muted);">En más de 1.000 establecimientos</div>
+                  </td>
+                  <td class="col-aca">Hasta 40% OFF</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="margin-top: 24px; padding: 14px; background: var(--aca-yellow-soft); border-radius: 12px; font-size: 0.88rem; color: #78350F; display: flex; align-items: center; gap: 10px;">
+              <i data-lucide="info" style="flex-shrink: 0; width: 20px; height: 20px;"></i>
+              <span>Con un solo auxilio mecánico o una escapada de fin de semana, <strong>tu cuota anual ya está amortizada</strong>.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- ========================================================================
+         6 CORE BENEFITS SHOWCASE WITH FILTER SYSTEM
+         ======================================================================== -->
+    <section class="benefits-section" id="beneficios" aria-labelledby="benefits-title">
+      <div class="container">
+        
+        <div class="section-head">
+          <span class="section-tag">Ventajas Exclusivas</span>
+          <h2 id="benefits-title" class="section-title">Lo que ganás siendo Socio del ACA</h2>
+          <p class="section-subtitle">
+            Cuando te asociás, no sólo sumás descuentos sino un respaldo integral con personal propio altamente capacitado y equipamiento moderno.
+          </p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="benefits-filter-bar" role="tablist" aria-label="Filtrar beneficios por categoría">
+          <button type="button" class="filter-btn active" data-filter="all">Todos los Beneficios</button>
+          <button type="button" class="filter-btn" data-filter="ruta">Auxilio & Ruta</button>
+          <button type="button" class="filter-btn" data-filter="turismo">Turismo & Hoteles</button>
+          <button type="button" class="filter-btn" data-filter="seguros">Seguros & Respaldo</button>
+          <button type="button" class="filter-btn" data-filter="descuentos">Comercios & Gestoría</button>
+        </div>
+
+        <!-- Benefits Grid -->
+        <div class="benefits-grid">
+          
+          <!-- Benefit 1: Auxilio mecánico 24/7 -->
+          <article class="benefit-card-premium" data-category="ruta">
+            <div class="benefit-card-photo-wrapper">
+              <img src="assets/auxilio-aca.png" alt="Camiones de auxilio mecánico del ACA listos para asistir en ruta" class="benefit-card-photo" loading="lazy" />
+              <span class="benefit-category-pill">Auxilio 24/7</span>
+            </div>
+            <div class="benefit-card-body">
+              <div>
+                <div class="benefit-icon-title-row">
+                  <div class="benefit-icon-box">
+                    <img src="assets/auxilio-icon.svg" alt="" aria-hidden="true" />
+                  </div>
+                  <h3 class="benefit-title">Auxilio mecánico 24/7</h3>
+                </div>
+                <p class="benefit-desc">
+                  Siempre listos para asistirte en cualquier momento y lugar. Puesta en marcha, remolque, mecánica ligera y venta e instalación de baterías en el acto.
+                </p>
+              </div>
+              <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="benefit-link-cta" target="_blank" rel="noopener noreferrer">
+                <span>Acceder al auxilio</span> &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Benefit 2: Descuentos en hoteles -->
+          <article class="benefit-card-premium" data-category="turismo">
+            <div class="benefit-card-photo-wrapper">
+              <img src="assets/hotel-calafate.webp" alt="Hotel y centro recreativo ACA en Calafate" class="benefit-card-photo" loading="lazy" />
+              <span class="benefit-category-pill">Turismo</span>
+            </div>
+            <div class="benefit-card-body">
+              <div>
+                <div class="benefit-icon-title-row">
+                  <div class="benefit-icon-box">
+                    <img src="assets/descuentos-icon.svg" alt="" aria-hidden="true" />
+                  </div>
+                  <h3 class="benefit-title">Red Hotelera Nacional</h3>
+                </div>
+                <p class="benefit-desc">
+                  Accedé a tarifas preferenciales en la Red Hotelera ACA, hosterías, balnearios de primer nivel y centros recreativos en los paisajes más imponentes de la Argentina.
+                </p>
+              </div>
+              <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="benefit-link-cta" target="_blank" rel="noopener noreferrer">
+                <span>Ver red hotelera</span> &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Benefit 3: Seguro Automotor -->
+          <article class="benefit-card-premium" data-category="seguros">
+            <div class="benefit-card-photo-wrapper">
+              <img src="assets/beneficios-aca.webp" alt="Socios ACA asegurados disfrutando de su vehículo" class="benefit-card-photo" loading="lazy" />
+              <span class="benefit-category-pill">Seguros</span>
+            </div>
+            <div class="benefit-card-body">
+              <div>
+                <div class="benefit-icon-title-row">
+                  <div class="benefit-icon-box">
+                    <img src="assets/beneficios-icon.svg" alt="" aria-hidden="true" />
+                  </div>
+                  <h3 class="benefit-title">Seguro Automotor con La Caja</h3>
+                </div>
+                <p class="benefit-desc">
+                  Las mejores coberturas contra todo riesgo y terceros con descuentos exclusivos contratando tu póliza a través del ACA como Agente Institorio.
+                </p>
+              </div>
+              <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="benefit-link-cta" target="_blank" rel="noopener noreferrer">
+                <span>Cotizar seguro</span> &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Benefit 4: Asistencia al viajero -->
+          <article class="benefit-card-premium" data-category="turismo">
+            <div class="benefit-card-photo-wrapper">
+              <img src="assets/asistencia-aca.png" alt="Asistencia al viajero del ACA para viajes dentro de Argentina" class="benefit-card-photo" loading="lazy" />
+              <span class="benefit-category-pill">Asistencia en Viaje</span>
+            </div>
+            <div class="benefit-card-body">
+              <div>
+                <div class="benefit-icon-title-row">
+                  <div class="benefit-icon-box">
+                    <img src="assets/asistencia-icon.svg" alt="" aria-hidden="true" />
+                  </div>
+                  <h3 class="benefit-title">Asistencia al viajero nacional</h3>
+                </div>
+                <p class="benefit-desc">
+                  Sin costo adicional para vos y tu acompañante en cualquier rincón de la República Argentina. Viajá con total respaldo médico y logístico.
+                </p>
+              </div>
+              <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="benefit-link-cta" target="_blank" rel="noopener noreferrer">
+                <span>Conocer cobertura</span> &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Benefit 5: Gestión ágil de trámites -->
+          <article class="benefit-card-premium" data-category="descuentos">
+            <div class="benefit-card-photo-wrapper">
+              <img src="assets/ruta-viaje.webp" alt="Socios ACA viajando por ruta con trámites y documentación al día" class="benefit-card-photo" loading="lazy" />
+              <span class="benefit-category-pill">Gestoría Express</span>
+            </div>
+            <div class="benefit-card-body">
+              <div>
+                <div class="benefit-icon-title-row">
+                  <div class="benefit-icon-box">
+                    <img src="assets/gestion-icon.svg" alt="" aria-hidden="true" />
+                  </div>
+                  <h3 class="benefit-title">Gestión ágil y documentación</h3>
+                </div>
+                <p class="benefit-desc">
+                  Tramitá DNI, Pasaporte, renovación de Licencia y Permiso Internacional de Conducir con turnos preferenciales y descuentos de hasta el 75%.
+                </p>
+              </div>
+              <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="benefit-link-cta" target="_blank" rel="noopener noreferrer">
+                <span>Ver trámites</span> &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Benefit 6: Más de 1000 comercios adheridos -->
+          <article class="benefit-card-premium" data-category="descuentos">
+            <div class="benefit-card-photo-wrapper">
+              <img src="assets/descuentos-aca.png" alt="Comercios adheridos para socios ACA en todo el país" class="benefit-card-photo" loading="lazy" />
+              <span class="benefit-category-pill">Descuentos Diarios</span>
+            </div>
+            <div class="benefit-card-body">
+              <div>
+                <div class="benefit-icon-title-row">
+                  <div class="benefit-icon-box">
+                    <img src="assets/comercios-icon.svg" alt="" aria-hidden="true" />
+                  </div>
+                  <h3 class="benefit-title">+1.000 Comercios Adheridos</h3>
+                </div>
+                <p class="benefit-desc">
+                  Gastronomía, neumáticos, mantenimiento vehicular, indumentaria, entretenimiento y compras cotidianas con descuentos directos en todo el país.
+                </p>
+              </div>
+              <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="benefit-link-cta" target="_blank" rel="noopener noreferrer">
+                <span>Ver comercios</span> &rarr;
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         NATIONAL COVERAGE (Bases operativas federales)
+         ======================================================================== -->
+    <section class="coverage-section" id="cobertura" aria-labelledby="coverage-title">
+      <div class="container">
+        
+        <div class="coverage-grid">
+          
+          <div class="coverage-info">
+            <span class="promo-tag-pill" style="margin-bottom: 12px;">Cobertura Regional La Rioja & Catamarca</span>
+            <h2 id="coverage-title">Nunca estás solo: Cobertura activa en toda La Rioja y Catamarca</h2>
+            <p>
+              Bases operativas estratégicas en La Rioja Capital, Chamical, Catamarca Capital y Tinogasta, con cobertura total de asistencia y rescate en cada ruta y localidad de ambas provincias.
+            </p>
+            
+            <ul class="coverage-highlights-list">
+              <li class="coverage-hl-item">
+                <span>✓</span> Central de operaciones 24/7
+              </li>
+              <li class="coverage-hl-item">
+                <span>✓</span> Flota pesada y liviana de rescate
+              </li>
+              <li class="coverage-hl-item">
+                <span>✓</span> Talleres móviles especializados
+              </li>
+              <li class="coverage-hl-item">
+                <span>✓</span> Auxilio en ruta y zonas urbanas
+              </li>
+            </ul>
+
+            <div style="margin-top: 32px;">
+              <a href="#solicitud" class="btn btn-primary">
+                <span>Asociate y viajá con respaldo</span>
+                <i data-lucide="shield" style="width: 18px; height: 18px;"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Coverage City Pins Card -->
+          <div class="coverage-map-visual">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #FFFFFF; margin: 0;">Bases de Operaciones Destacadas</h3>
+              <span style="font-size: 0.75rem; color: #EF4444; font-weight: 700; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); padding: 4px 10px; border-radius: 9999px;">La Rioja & Catamarca</span>
+            </div>
+            <div class="coverage-pins-container">
+              
+              <div class="coverage-city-badge">
+                <div style="text-align: left;">
+                  <strong style="color: #FFFFFF; font-size: 0.95rem;">La Rioja Capital y Chamical</strong>
+                  <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 2px;">Bases operativas permanentes · Cobertura activa en toda la provincia de La Rioja</div>
+                </div>
+                <span class="coverage-status-tag">● Activo 24h</span>
+              </div>
+
+              <div class="coverage-city-badge">
+                <div style="text-align: left;">
+                  <strong style="color: #FFFFFF; font-size: 0.95rem;">Catamarca Capital y Tinogasta</strong>
+                  <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 2px;">Bases operativas permanentes · Cobertura activa en toda la provincia de Catamarca</div>
+                </div>
+                <span class="coverage-status-tag">● Activo 24h</span>
+              </div>
+
+            </div>
+
+            <div style="margin-top: 20px; padding: 14px; border-radius: 12px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); font-size: 0.8rem; color: #CBD5E1; line-height: 1.5;">
+              <strong style="color: #FFFFFF;">Cobertura Provincial Total:</strong> Si bien nuestras bases operativas están en La Rioja Capital, Chamical, Catamarca Capital y Tinogasta, brindamos auxilio mecánico y remolque en <strong style="color: #FFFFFF;">toda la provincia de La Rioja y Catamarca</strong>.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         REAL TESTIMONIALS & GOOGLE SOCIAL PROOF
+         ======================================================================== -->
+    <section class="testimonials-section" id="testimonios" aria-labelledby="testimonials-title">
+      <div class="container">
+        
+        <div class="section-head">
+          <span class="section-tag">Opiniones Reales</span>
+          <h2 id="testimonials-title" class="section-title">¿Qué dicen nuestros Socios?</h2>
+          <p class="section-subtitle">
+            Historias auténticas de conductores que confían en el ACA para cada viaje cotidiano y sus vacaciones.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          
+          <!-- Review 1: Juan -->
+          <article class="test-card-modern">
+            <div>
+              <div class="test-card-header">
+                <img src="assets/Google.png" alt="Google Review" class="test-google-logo" loading="lazy" />
+                <div class="test-stars">
+                  <img src="assets/Star.svg" alt="5 estrellas" />
+                </div>
+              </div>
+              <p class="test-quote-text">
+                “Me hice socio para aprender a manejar cuando era joven y ahora, ya casi abuelo, sigo siéndolo porque me acompañan siempre a donde viajo.”
+              </p>
+            </div>
+            <div class="test-author-box">
+              <div class="test-avatar-placeholder">J</div>
+              <div class="test-author-info">
+                <h4>Juan</h4>
+                <p>Socio Vitalicio ACA</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Review 2: Sandra -->
+          <article class="test-card-modern">
+            <div>
+              <div class="test-card-header">
+                <img src="assets/Google.png" alt="Google Review" class="test-google-logo" loading="lazy" />
+                <div class="test-stars">
+                  <img src="assets/Star.svg" alt="5 estrellas" />
+                </div>
+              </div>
+              <p class="test-quote-text">
+                “Desde 1984 que soy socia y nunca tuve un problema. Los mapas ruteros me llevan a todos lados y tanto los hoteles como el personal son de 10. ¡Gracias!”
+              </p>
+            </div>
+            <div class="test-author-box">
+              <div class="test-avatar-placeholder">S</div>
+              <div class="test-author-info">
+                <h4>Sandra</h4>
+                <p>Socia ACA hace 40 años</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Review 3: Walter -->
+          <article class="test-card-modern">
+            <div>
+              <div class="test-card-header">
+                <img src="assets/Google.png" alt="Google Review" class="test-google-logo" loading="lazy" />
+                <div class="test-stars">
+                  <img src="assets/Star.svg" alt="5 estrellas" />
+                </div>
+              </div>
+              <p class="test-quote-text">
+                “Fui a renovar mi licencia de conducir, todo muy organizado, los empleados muy amables. Tiene un museo y buena vista sobre Av. Libertador. Recomendable su visita.”
+              </p>
+            </div>
+            <div class="test-author-box">
+              <div class="test-avatar-placeholder">W</div>
+              <div class="test-author-info">
+                <h4>Walter</h4>
+                <p>Socio Activo ACA</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         EXPRESS ONBOARDING & LEAD CAPTURE WIZARD
+         ======================================================================== -->
+    <section class="lead-form-section" id="solicitud" aria-labelledby="form-title">
+      <div class="container">
+        
+        <div class="lead-form-card">
+          
+          <div class="lead-form-header">
+            <h3 id="form-title">Solicitá tu Membresía con Descuento Promo</h3>
+            <p>Completá estos simples pasos y un asesor oficial del ACA te activará la promoción en minutos</p>
+          </div>
+
+          <div class="lead-wizard-body">
+            
+            <!-- Wizard Step Nodes -->
+            <div class="wizard-steps-indicator" aria-hidden="true">
+              <div class="wizard-step-node active" data-node="1">
+                <span class="step-num">1</span>
+                <span>Datos Básicos</span>
+              </div>
+              <div style="width: 30px; height: 2px; background: var(--aca-border);"></div>
+              <div class="wizard-step-node" data-node="2">
+                <span class="step-num">2</span>
+                <span>Tu Vehículo</span>
+              </div>
+              <div style="width: 30px; height: 2px; background: var(--aca-border);"></div>
+              <div class="wizard-step-node" data-node="3">
+                <span class="step-num">3</span>
+                <span>Beneficio Preferido</span>
+              </div>
+            </div>
+
+            <!-- The Interactive Form -->
+            <form id="express-onboarding-form" novalidate>
+              
+              <!-- STEP 1: Personal Data -->
+              <div class="wizard-step-panel" data-step="1">
+                <div class="form-grid-two-cols">
+                  <div class="form-group">
+                    <label for="lead-fullname" class="form-label">Nombre y Apellido *</label>
+                    <input type="text" id="lead-fullname" class="form-input" placeholder="Ej: Martín Rodríguez" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="lead-phone" class="form-label">Teléfono / WhatsApp *</label>
+                    <input type="tel" id="lead-phone" class="form-input" placeholder="Ej: 11 4567-8900" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="lead-email" class="form-label">Correo Electrónico *</label>
+                  <input type="email" id="lead-email" class="form-input" placeholder="Ej: martin@gmail.com" required />
+                </div>
+              </div>
+
+              <!-- STEP 2: Vehicle Type -->
+              <div class="wizard-step-panel" data-step="2" style="display: none;">
+                <div class="form-group">
+                  <label class="form-label">¿Qué tipo de vehículo conducís? *</label>
+                  <div class="form-radio-tiles">
+                    <label class="radio-tile-label selected">
+                      <input type="radio" name="vehicle-type" value="auto" checked />
+                      <i data-lucide="car"></i>
+                      <span>Automóvil</span>
+                    </label>
+                    <label class="radio-tile-label">
+                      <input type="radio" name="vehicle-type" value="suv" />
+                      <i data-lucide="truck"></i>
+                      <span>Camioneta / SUV</span>
+                    </label>
+                    <label class="radio-tile-label">
+                      <input type="radio" name="vehicle-type" value="moto" />
+                      <i data-lucide="bike"></i>
+                      <span>Motocicleta</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-grid-two-cols" style="margin-top: 16px;">
+                  <div class="form-group">
+                    <label for="lead-provincia" class="form-label">Provincia de residencia *</label>
+                    <select id="lead-provincia" class="form-select" required>
+                      <option value="">Seleccioná tu provincia</option>
+                      <option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+                      <option value="Buenos Aires">Buenos Aires</option>
+                      <option value="Córdoba">Córdoba</option>
+                      <option value="Santa Fe">Santa Fe</option>
+                      <option value="Mendoza">Mendoza</option>
+                      <option value="Tucumán">Tucumán</option>
+                      <option value="Entre Ríos">Entre Ríos</option>
+                      <option value="Salta">Salta</option>
+                      <option value="Otras">Otra provincia</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="lead-year" class="form-label">Año del vehículo (aprox)</label>
+                    <input type="number" id="lead-year" class="form-input" placeholder="Ej: 2020" min="1980" max="2026" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 3: Promo & Final Confirmation -->
+              <div class="wizard-step-panel" data-step="3" style="display: none;">
+                <div class="form-group">
+                  <label class="form-label">Confirmá tu beneficio promocional:</label>
+                  <div style="background: var(--aca-yellow-soft); border: 1.5px solid var(--aca-yellow); border-radius: 12px; padding: 18px;">
+                    <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: #92400E; margin-bottom: 6px;">
+                      <i data-lucide="gift"></i>
+                      <span>Paquete Promocional Activado</span>
+                    </div>
+                    <ul style="list-style: none; font-size: 0.9rem; color: #78350F; line-height: 1.6;">
+                      <li>✓ 3 cuotas con 50% de descuento</li>
+                      <li>✓ 6 cuotas con 25% de descuento</li>
+                      <li>✓ $48.000 en combustible de regalo YPF</li>
+                      <li>✓ Auxilio mecánico 24/7 y asistencia al viajero</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 14px;">
+                  <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: var(--text-secondary); cursor: pointer;">
+                    <input type="checkbox" checked required style="margin-top: 3px;" />
+                    <span>Acepto ser contactado por un asesor oficial del Automóvil Club Argentino y he leído la Política de Privacidad.</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Navigation Buttons -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 28px; border-top: 1px solid var(--aca-border); padding-top: 20px;">
+                <button type="button" class="btn btn-secondary" id="wizard-prev-btn" style="display: none;">
+                  &larr; Anterior
+                </button>
+                <div style="margin-left: auto;">
+                  <button type="button" class="btn btn-primary btn-pulse" id="wizard-next-btn">
+                    <span>Siguiente paso</span> &rarr;
+                  </button>
+                  <button type="submit" class="btn btn-primary btn-pulse" id="wizard-submit-btn" style="display: none;">
+                    <span>Confirmar y recibir llamada</span>
+                    <i data-lucide="check" style="width: 18px; height: 18px;"></i>
+                  </button>
+                </div>
+              </div>
+
+            </form>
+
+            <!-- Success Box (Celebration state) -->
+            <div class="form-success-box" id="form-success-state">
+              <div class="success-check-circle">✓</div>
+              <h4 style="font-size: 1.6rem; font-weight: 800; color: var(--aca-navy); margin-bottom: 8px;">¡Solicitud Recibida con Éxito!</h4>
+              <p style="color: var(--text-secondary); font-size: 1rem; max-width: 520px; margin: 0 auto 24px auto;">
+                Un asesor oficial del ACA se comunicará con vos en breve para validar tus datos y acreditarte la promo de <strong>3 cuotas al 50% + $48.000 en combustible</strong>.
+              </p>
+              <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+                <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                  <span>Ir al alta online inmediata</span> &rarr;
+                </a>
+                <a href="https://wa.me/5491145678900?text=Hola!%20Acabo%20de%20solicitar%20la%20promo%20ACA%20del%2050%25%20y%20combustible" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                  <i data-lucide="message-circle"></i>
+                  <span>Hablar por WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <p class="form-trust-text">
+              🔒 Tus datos se encuentran 100% protegidos bajo la Ley Nacional de Protección de Datos Personales N° 25.326.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FREQUENTLY ASKED QUESTIONS (FAQ Accordion)
+         ======================================================================== -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        
+        <div class="section-head">
+          <span class="section-tag">Resolvé tus Dudas</span>
+          <h2 id="faq-title" class="section-title">Preguntas Frecuentes</h2>
+          <p class="section-subtitle">
+            Todo lo que necesitás saber antes de asociarte al Automóvil Club Argentino.
+          </p>
+        </div>
+
+        <div class="faq-accordion-list">
+          
+          <div class="faq-item active">
+            <button type="button" class="faq-trigger" aria-expanded="true">
+              <span>¿Cómo funciona el beneficio de los $48.000 en combustible YPF?</span>
+              <span class="faq-trigger-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Al asociarte a través de esta promoción online, recibís una bonificación total de $48.000 aplicable en tus cargas de combustible en la red de estaciones de servicio YPF adheridas en todo el país. El beneficio se acredita según el cronograma fijado en las bases y condiciones vigentes.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>¿Qué cubre exactamente el servicio de auxilio mecánico 24/7?</span>
+              <span class="faq-trigger-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Cubre auxilio en ruta y ciudad en todo el territorio nacional las 24 horas del día. Incluye mecánica ligera (problemas de arranque, cambio de rueda pinchada, apertura por olvido de llaves), remolque hasta el destino que indiques según el kilometraje de tu plan, y venta e instalación de baterías a domicilio.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>¿El descuento del 50% y 25% se aplica de forma automática?</span>
+              <span class="faq-trigger-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Sí, asociándote a través de esta campaña online, el 50% de descuento se descuenta directamente de tus primeras 3 cuotas mensuales, y luego un 25% de bonificación en las siguientes 6 cuotas consecutivas mediante débito automático con tarjeta de crédito adherida.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>¿Qué incluye la Asistencia al Viajero?</span>
+              <span class="faq-trigger-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Contás con cobertura médica de urgencia, traslados sanitarios, asesoramiento legal y asistencia en viaje sin cargo para vos y tu acompañante en cualquier desplazamiento por la Argentina a más de 100 km de tu domicilio habitual.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>¿Puedo asociarme si mi vehículo tiene varios años de antigüedad?</span>
+              <span class="faq-trigger-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              ¡Por supuesto! El ACA asiste tanto a conductores con vehículos cero kilómetro como a unidades con años de rodaje. La membresía acompaña al socio y te brinda cobertura en el auto declarado y asistencia personal.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FINAL HIGH-IMPACT CTA BANNER
+         ======================================================================== -->
+    <section class="cta-banner-final" aria-labelledby="cta-final-title">
+      <img src="assets/socio-aca-equipo.png" alt="Socios ACA disfrutando de los beneficios en equipo" class="cta-banner-img" loading="lazy" />
+      <div class="cta-banner-overlay"></div>
+      
+      <div class="cta-banner-content">
+        <h2 id="cta-final-title">
+          Asociate y empezá a vivir los beneficios de tenernos cerca
+        </h2>
+        <p>
+          Completá tus datos y asociate hoy mismo. No es solo un ahorro: es la compañía, el respaldo y la tranquilidad que te merecés en cada ruta.
+        </p>
+        <div class="cta-banner-buttons">
+          <a href="https://www.aca.org.ar/aca/socios/asociacion/?id=3C3F3831383037333138373A30353E454D50424224554A4246444525214F4C464658494D5050" class="btn btn-primary btn-lg btn-pulse" target="_blank" rel="noopener noreferrer">
+            <span>Asociarme ahora con 50% OFF</span>
+            <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+          </a>
+          <a href="#solicitud" class="btn btn-dark btn-lg">
+            <span>Quiero que me llamen</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER & OFFICIAL LEGAL DISCLAIMER
+       ======================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      
+      <div class="footer-top-grid">
+        
+        <!-- Brand & Legal Info -->
+        <div class="footer-brand-info">
+          <img src="assets/logo-la-saeta-dark.png" alt="La Saeta S.R.L. - Corredor Auxilio Mecánico La Rioja-Catamarca" class="footer-logo" loading="lazy" />
+          <p class="footer-disclaimer-legal">
+            Los seguros son emitidos por Caja de Seguros S.A. Fitz Roy 957 (C1414CHI) C.A.B.A. CUIT 30-66320562-1. Nº de Inscripción en SSN: 501. Superintendencia de Seguros de la Nación 4338-4000 o 0-800-666-8400, www.argentina.gob.ar/ssn. Consultá acerca de las coberturas, sus límites, condiciones de suscripción y exclusiones de la póliza. Agente Institorio: Automóvil Club Argentino. Av. del Libertador 1850 (C1425AAR) C.A.B.A. CUIT 30-50014329-7. N° de Inscripción en SSN: 350.
+          </p>
+        </div>
+
+        <!-- Navigation Links -->
+        <div>
+          <h4 class="footer-col-title">Servicios</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#beneficios" class="footer-nav-link">Auxilio Mecánico 24/7</a></li>
+            <li><a href="#beneficios" class="footer-nav-link">Red Hotelera ACA</a></li>
+            <li><a href="#beneficios" class="footer-nav-link">Seguro Automotor</a></li>
+            <li><a href="#beneficios" class="footer-nav-link">Asistencia al Viajero</a></li>
+            <li><a href="#beneficios" class="footer-nav-link">Gestión de Licencias y DNI</a></li>
+          </ul>
+        </div>
+
+        <!-- Promo Links -->
+        <div>
+          <h4 class="footer-col-title">Promociones</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#precio" class="footer-nav-link">3 cuotas al 50% OFF</a></li>
+            <li><a href="#precio" class="footer-nav-link">6 cuotas al 25% OFF</a></li>
+            <li><a href="#precio" class="footer-nav-link">$48.000 en Combustible</a></li>
+            <li><a href="http://www.aca.org.ar/condiciones/somos-equipo-4/" class="footer-nav-link" target="_blank" rel="noopener noreferrer">Bases y Condiciones</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Attention -->
+        <div>
+          <h4 class="footer-col-title">Contacto</h4>
+          <ul class="footer-nav-list">
+            <li><strong>Central 24hs:</strong> 0800-888-4222</li>
+            <li><strong>Sede Central:</strong> Av. del Libertador 1850, CABA</li>
+            <li><strong>Auxilio Rutero:</strong> *222 desde tu celular</li>
+            <li><a href="#solicitud" class="footer-nav-link">Solicitar Asesor</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          <p>© 2026 Automóvil Club Argentino (ACA). Todos los derechos reservados.</p>
+        </div>
+        <div style="display: flex; gap: 20px;">
+          <a href="#" class="footer-nav-link" data-modal-target="privacy-modal">Política de Privacidad</a>
+          <a href="http://www.aca.org.ar/condiciones/somos-equipo-4/" class="footer-nav-link" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL: POLÍTICA DE PRIVACIDAD OFICIAL
+       ======================================================================== -->
+  <div class="modal-overlay" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-privacy" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-title-privacy">Política de Privacidad - ACA</h3>
+        <button type="button" class="modal-close-btn" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>El acceso al sitio de Internet del Automóvil Club Argentino (ACA), es público e irrestricto a todas las personas que así lo hicieran. La utilización del sitio web propiedad del ACA, implica la aceptación previa sin reservas a todo lo dispuesto en la presente Política de Privacidad.</p>
+
+        <p>Al momento de acceder al sitio de Internet del Automóvil Club Argentino (www.aca.org.ar) y proporcionar en forma voluntaria la información de tipo personal, el solo hecho presume el consentimiento del usuario para su archivo, almacenamiento, tratamiento y utilización de la información suministrada.</p>
+
+        <p>Todos los datos personales aportados e ingresados por los Usuarios a través del Sitio del ACA, se consideran ciertos y verosímiles.</p>
+
+        <h4>Primero:</h4>
+        <p>El destinatario de dichos datos personales es el Automóvil Club Argentino, quien se obliga a dar el debido cumplimiento al procesamiento, tratamiento, utilización, transferencia y almacenamiento de los mismos, resguardando la privacidad, confidencialidad y la estricta reserva del contenido de los mismos.</p>
+
+        <h4>Segundo:</h4>
+        <p>Los datos personales ingresados serán incorporados a un banco de datos, siendo el titular y su responsable el Automóvil Club Argentino, con domicilio en Av. del Libertador 1850 de la Ciudad Autónoma de Buenos Aires – Argentina.</p>
+
+        <h4>Tercero:</h4>
+        <p>El aporte realizado de los datos personales es facultativo para el usuario; quién podrá en cualquier momento requerir fehacientemente que se le informe el contenido de los mismos, solicitar rectificaciones y/o las supresiones que considere necesarias, de conformidad con la ley de protección de datos personales.</p>
+
+        <h4>Cuarto:</h4>
+        <p>El Automóvil Club Argentino, como propietario del banco de datos, a su juicio podrá revelar la información personal a quien considere necesario, siempre que el receptor consienta tratarla de conformidad con los términos de su Política de Seguridad y su Política de Privacidad.</p>
+
+        <h4>Quinto:</h4>
+        <p>El usuario, al momento de acceder al sitio de Internet del ACA www.aca.org.ar y proveer en forma voluntaria la información de tipo personal, el solo hecho presume el consentimiento y autenticidad de los datos para su archivo, almacenamiento, tratamiento y utilización de la información.</p>
+
+        <h4>Sexto:</h4>
+        <p>La información personal suministrada voluntariamente por el usuario en el sitio de Internet del Automóvil Club Argentino se resguarda y se protege con el fin de preservar la confidencialidad, privacidad, integridad, disponibilidad y autenticidad de los mismos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FLOATING ACTIONS (WhatsApp & Back to top)
+       ======================================================================== -->
+  <div class="floating-actions-container" aria-label="Acciones rápidas flotantes">
+    
+    <a href="https://wa.me/5491145678900?text=Hola!%20Quiero%20asociarme%20al%20ACA%20con%20la%20promo%20del%2050%25%20y%20combustible" class="whatsapp-float-btn" target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp con un asesor oficial del ACA">
+      <i data-lucide="message-circle" style="width: 30px; height: 30px;"></i>
+      <span class="whatsapp-tooltip">¿Dudas sobre la promo? Chateá acá</span>
+    </a>
+
+    <button type="button" class="back-to-top-btn" id="back-to-top" aria-label="Volver arriba">
+      <i data-lucide="chevron-up" style="width: 22px; height: 22px;"></i>
+    </button>
+
+  </div>
+
+  <!-- Lucide icons activator & interactive script -->
+  <script src="app.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
+
+</body>
+</html>

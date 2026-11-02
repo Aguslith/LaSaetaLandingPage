@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-red: #E51937;
+    --brand-gold: #FEC526;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #F8FAFC;
+    color: #0F172A;
+  }
+
+  /* Dark mode background */
+  html.dark body {
+    background-color: #0B0F19;
+    color: #F8FAFC;
+  }
+
+  /* Font size accessibility scaling */
+  body.font-large {
+    font-size: 116%;
+  }
+
+  /* Accessible Focus Ring */
+  :focus-visible {
+    outline: 2px solid #E51937;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* React Bits Animations */
+@keyframes shine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(229, 25, 55, 0.6); }
+  70% { box-shadow: 0 0 0 14px rgba(229, 25, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 25, 55, 0); }
+}
+
+.btn-pulse-red {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Custom Range Slider */
+input[type=range] {
+  -webkit-appearance: none;
+  background: #334155;
+  border-radius: 8px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #E51937;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(229, 25, 55, 0.7);
+  transition: transform 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
