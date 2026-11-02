@@ -8,6 +8,20 @@
     <meta name="theme-color" content="#FEC526" />
     <link rel="icon" type="image/png" href="/assets/logo-la-saeta.png" />
     
+    <script>
+      (function() {
+        try {
+          localStorage.removeItem('aca_theme_dark');
+          var theme = localStorage.getItem('lasaeta_theme');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    
     <!-- Preconnect Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

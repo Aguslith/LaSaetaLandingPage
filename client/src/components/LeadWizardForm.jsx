@@ -13,7 +13,7 @@ export default function LeadWizardForm() {
     phone: '',
     email: '',
     vehicleType: 'auto',
-    province: 'CABA',
+    province: 'La Rioja',
     vehicleYear: '',
     planSelected: 'Plan Integral (Auxilio 24/7 y Asistencia)'
   });
@@ -207,13 +207,15 @@ export default function LeadWizardForm() {
                           onChange={handleChange}
                           className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-red-500 focus:ring-4 focus:ring-red-500/20 text-sm font-medium outline-none"
                         >
+                          <option value="La Rioja">La Rioja</option>
+                          <option value="Catamarca">Catamarca</option>
+                          <option value="Córdoba">Córdoba</option>
                           <option value="CABA">Ciudad Autónoma de Buenos Aires</option>
                           <option value="Buenos Aires">Buenos Aires</option>
-                          <option value="Córdoba">Córdoba</option>
                           <option value="Santa Fe">Santa Fe</option>
                           <option value="Mendoza">Mendoza</option>
+                          <option value="San Juan">San Juan</option>
                           <option value="Tucumán">Tucumán</option>
-                          <option value="Entre Ríos">Entre Ríos</option>
                           <option value="Salta">Salta</option>
                           <option value="Otras">Otra provincia</option>
                         </select>

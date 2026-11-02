@@ -152,20 +152,20 @@ export default function Hero() {
               <img
                 src="/assets/hero-back.png"
                 alt="Socios ACA disfrutando de un viaje por carretera"
-                className="w-full h-[410px] object-cover rounded-2xl"
+                className="w-full h-[280px] sm:h-[360px] lg:h-[410px] object-cover rounded-2xl"
               />
 
               {/* Floating Badge 1: Federal Presence */}
-              <div className="absolute top-6 left-6 bg-white/95 dark:bg-slate-900/90 backdrop-blur-md px-3.5 py-2 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 flex items-center gap-2">
-                <Compass className="w-4 h-4 text-red-600" />
-                <span className="text-xs font-bold text-slate-900 dark:text-white">Cobertura 100% Federal</span>
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 bg-white/95 dark:bg-slate-900/90 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 flex items-center gap-2">
+                <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-600" />
+                <span className="text-[11px] sm:text-xs font-bold text-slate-900 dark:text-white">Cobertura La Rioja & Catamarca</span>
               </div>
 
               {/* Floating Badge 2: Emergency Response */}
-              <div className="absolute bottom-6 right-6 bg-slate-950/90 text-white p-4 rounded-2xl shadow-xl border border-white/10 max-w-[210px] backdrop-blur-md">
+              <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-slate-950/90 text-white p-3 sm:p-4 rounded-2xl shadow-xl border border-white/10 max-w-[180px] sm:max-w-[210px] backdrop-blur-md">
                 <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">Central Operativa</span>
-                <span className="text-xl font-extrabold text-white block mt-0.5">Auxilio 24hs</span>
-                <span className="text-xs text-slate-300">Rescate y asistencia en cualquier ruta de Argentina</span>
+                <span className="text-lg sm:text-xl font-extrabold text-white block mt-0.5">Auxilio 24hs</span>
+                <span className="text-[11px] sm:text-xs text-slate-300">Rescate y asistencia mecánica en ruta</span>
               </div>
             </div>
           </motion.div>

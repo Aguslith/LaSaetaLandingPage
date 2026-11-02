@@ -27,8 +27,12 @@ export default function Particles({
 
     window.addEventListener('resize', handleResize);
 
+    const isMobile = window.innerWidth < 768;
+    const effectiveCount = isMobile ? Math.min(18, particleCount) : particleCount;
+    const effectiveConnect = isMobile ? false : connectParticles;
+
     const particles = [];
-    for (let i = 0; i < particleCount; i++) {
+    for (let i = 0; i < effectiveCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -91,8 +95,8 @@ export default function Particles({
         ctx.globalAlpha = p.alpha;
         ctx.fill();
 
-        // Connect lines
-        if (connectParticles) {
+        // Connect lines (disabled on mobile for peak scrolling fps)
+        if (effectiveConnect) {
           for (let j = i + 1; j < particles.length; j++) {
             const p2 = particles[j];
             const dx = p.x - p2.x;

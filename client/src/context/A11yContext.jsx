@@ -4,9 +4,15 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem('aca_theme_dark');
-    if (saved !== null) return saved === 'true';
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    try {
+      localStorage.removeItem('aca_theme_dark');
+      const saved = localStorage.getItem('lasaeta_theme');
+      if (saved !== null) {
+        return saved === 'dark';
+      }
+    } catch (e) {}
+    // Default strictly to Light Mode (the user can toggle it)
+    return false;
   });
 
   const [largeFont, setLargeFont] = useState(() => {
@@ -23,11 +29,16 @@ export function ThemeProvider({ children }) {
     if (isDarkMode) {
       root.classList.add('dark');
       document.body.classList.add('dark');
+      try {
+        localStorage.setItem('lasaeta_theme', 'dark');
+      } catch (e) {}
     } else {
       root.classList.remove('dark');
       document.body.classList.remove('dark');
+      try {
+        localStorage.setItem('lasaeta_theme', 'light');
+      } catch (e) {}
     }
-    localStorage.setItem('aca_theme_dark', isDarkMode);
   }, [isDarkMode]);
 
   useEffect(() => {
