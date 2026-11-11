@@ -12,12 +12,9 @@
       (function() {
         try {
           localStorage.removeItem('aca_theme_dark');
-          var theme = localStorage.getItem('lasaeta_theme');
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
+          localStorage.removeItem('lasaeta_theme');
+          localStorage.removeItem('aca_large_font');
+          document.documentElement.classList.remove('dark');
         } catch (e) {}
       })();
     </script>
@@ -26,8 +23,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Pathway+Extreme:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-DqnqAVS0.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-1nI9nCf_.css">
+    <script type="module" crossorigin src="/assets/index-C7m_iiDS.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-By80-Hku.css">
   </head>
   <body class="bg-slate-50 text-slate-900 antialiased font-body selection:bg-amber-300 selection:text-slate-900">
     <div id="root"></div>

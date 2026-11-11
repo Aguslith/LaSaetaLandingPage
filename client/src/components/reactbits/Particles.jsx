@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../../context/A11yContext';
 
 export default function Particles({
-  particleCount = 70,
-  particleColors = ['#E51937', '#FEC526', '#38BDF8'],
-  speed = 0.5,
+  particleCount = 50,
+  particleColors = ['#E51937', '#FEC526', '#94A3B8'],
+  speed = 0.35,
   connectParticles = true,
   connectionDistance = 120,
+  paused = false,
   className = ''
 }) {
   const canvasRef = useRef(null);
+  const { reducedMotion } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,7 +31,7 @@ export default function Particles({
     window.addEventListener('resize', handleResize);
 
     const isMobile = window.innerWidth < 768;
-    const effectiveCount = isMobile ? Math.min(18, particleCount) : particleCount;
+    const effectiveCount = isMobile ? Math.min(16, particleCount) : particleCount;
     const effectiveConnect = isMobile ? false : connectParticles;
 
     const particles = [];
@@ -38,55 +41,27 @@ export default function Particles({
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * speed,
         vy: (Math.random() - 0.5) * speed,
-        radius: Math.random() * 2 + 1,
+        radius: Math.random() * 1.8 + 1,
         color: particleColors[Math.floor(Math.random() * particleColors.length)],
-        alpha: Math.random() * 0.6 + 0.2
+        alpha: Math.random() * 0.45 + 0.15
       });
     }
 
-    let mouse = { x: null, y: null, radius: 100 };
-
-    const handleMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    };
-
-    const handleMouseLeave = () => {
-      mouse.x = null;
-      mouse.y = null;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleMouseLeave);
-
-    const render = () => {
+    const drawFrame = (advance) => {
       ctx.clearRect(0, 0, width, height);
 
-      // Draw and update particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        p.x += p.vx;
-        p.y += p.vy;
+        if (advance) {
+          p.x += p.vx;
+          p.y += p.vy;
 
-        if (p.x < 0) p.x = width;
-        else if (p.x > width) p.x = 0;
+          if (p.x < 0) p.x = width;
+          else if (p.x > width) p.x = 0;
 
-        if (p.y < 0) p.y = height;
-        else if (p.y > height) p.y = 0;
-
-        // Mouse interaction
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = p.x - mouse.x;
-          const dy = p.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < mouse.radius) {
-            const angle = Math.atan2(dy, dx);
-            const force = (mouse.radius - dist) / mouse.radius;
-            p.x += Math.cos(angle) * force * 2;
-            p.y += Math.sin(angle) * force * 2;
-          }
+          if (p.y < 0) p.y = height;
+          else if (p.y > height) p.y = 0;
         }
 
         ctx.beginPath();
@@ -95,7 +70,6 @@ export default function Particles({
         ctx.globalAlpha = p.alpha;
         ctx.fill();
 
-        // Connect lines (disabled on mobile for peak scrolling fps)
         if (effectiveConnect) {
           for (let j = i + 1; j < particles.length; j++) {
             const p2 = particles[j];
@@ -108,15 +82,25 @@ export default function Particles({
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(p2.x, p2.y);
               ctx.strokeStyle = p.color;
-              ctx.globalAlpha = (1 - dist / connectionDistance) * 0.15;
-              ctx.lineWidth = 0.8;
+              ctx.globalAlpha = (1 - dist / connectionDistance) * 0.12;
+              ctx.lineWidth = 0.75;
               ctx.stroke();
             }
           }
         }
       }
-
       ctx.globalAlpha = 1;
+    };
+
+    if (reducedMotion || paused || isMobile) {
+      drawFrame(false);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+
+    const render = () => {
+      drawFrame(true);
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -124,15 +108,14 @@ export default function Particles({
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [particleCount, particleColors, speed, connectParticles, connectionDistance]);
+  }, [particleCount, particleColors, speed, connectParticles, connectionDistance, reducedMotion, paused]);
 
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       className={`absolute inset-0 pointer-events-none z-0 ${className}`}
     />
   );

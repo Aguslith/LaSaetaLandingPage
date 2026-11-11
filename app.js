@@ -1,43 +1,20 @@
 /**
- * AUTOMÓVIL CLUB ARGENTINO (ACA) - LANDING PAGE INTERACTIVE ENGINE
- * Community Manager Conversion Strategy, Front-End Micro-interactions & A11y
+ * AUTOMÓVIL CLUB ARGENTINO (ACA) · LA SAETA S.R.L. - LANDING PAGE INTERACTIVE ENGINE
+ * Tasteskill 2.5.1 + Impeccable + UI/UX Pro Max Micro-interactions & A11y
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Promo Countdown Timer (Creates urgency for conversion)
   initCountdownTimer();
-
-  // 2. Sticky Header & Scroll Spy
   initHeaderScroll();
-
-  // 3. 3D Card Tilt Physics (Desktop only)
-  init3DCardPhysics();
-
-  // 4. Animated KPIs Counters (Intersection Observer)
+  initHeroTelemetryLoop();
   initCounters();
-
-  // 5. Interactive Annual Savings Calculator
   initSavingsCalculator();
-
-  // 6. Benefits Filter System
   initBenefitsFilter();
-
-  // 7. Interactive Multi-Step Express Onboarding Form
   initLeadFormWizard();
-
-  // 8. FAQ Accordion
   initFaqAccordion();
-
-  // 9. Modals (Privacy Policy, Terms & Conditions)
   initModals();
-
-  // 10. Accessibility Settings (High Contrast, Font Size, Reduce Motion)
   initAccessibilityControls();
-
-  // 11. Back to Top Button
   initBackToTop();
-
-  // 12. Mobile Navigation Toggle
   initMobileNav();
 });
 
@@ -48,13 +25,16 @@ function initCountdownTimer() {
   const timerEl = document.getElementById('promo-countdown');
   if (!timerEl) return;
 
-  // Set target to end of current month or 48 hours rolling
-  let targetDate = new Date();
+  const targetDate = new Date();
   targetDate.setDate(targetDate.getDate() + 2);
   targetDate.setHours(23, 59, 59, 999);
 
+  function pad(n) {
+    return n < 10 ? '0' + n : String(n);
+  }
+
   function updateTimer() {
-    const now = new Date().getTime();
+    const now = Date.now();
     const distance = targetDate.getTime() - now;
 
     if (distance < 0) {
@@ -68,10 +48,6 @@ function initCountdownTimer() {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     timerEl.textContent = `${pad(days)}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
-  }
-
-  function pad(n) {
-    return n < 10 ? '0' + n : n;
   }
 
   updateTimer();
@@ -95,31 +71,69 @@ function initHeaderScroll() {
 }
 
 /* ==========================================================================
-   3. 3D CARD TILT PHYSICS (Anime.js / Physics based)
+   3. HERO LIVE TELEMETRY LOOP (3.2s cycle + restart on hover + 32px pause disc)
    ========================================================================== */
-function init3DCardPhysics() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 1024) {
-    return;
+function initHeroTelemetryLoop() {
+  const card = document.getElementById('hero-telemetry-card');
+  const badgeEl = document.getElementById('telemetry-badge-text');
+  const counterEl = document.getElementById('telemetry-counter');
+  const unitEl = document.getElementById('telemetry-unit-text');
+  const routeEl = document.getElementById('telemetry-route-text');
+  const pauseBtn = document.getElementById('telemetry-pause-btn');
+
+  if (!badgeEl || !unitEl || !routeEl) return;
+
+  const events = [
+    {
+      badge: 'Despacho Activo',
+      unit: 'Unidad #14 · Grúa Pesada',
+      route: 'RN 38 · Tramo La Rioja – Chamical — En ruta (ETA 12 min)'
+    },
+    {
+      badge: 'Asistencia Resuelta',
+      unit: 'Unidad #08 · Taller Móvil',
+      route: 'San Fernando del Valle de Catamarca — Puesta en marcha ($0)'
+    },
+    {
+      badge: 'Base Operativa',
+      unit: 'Unidad #21 · Rescate Rutero',
+      route: 'RN 60 · Corredor Tinogasta — Guardia 24/7 disponible'
+    }
+  ];
+
+  let idx = 0;
+  let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.body.classList.contains('reduce-motion');
+
+  function render(i) {
+    const ev = events[i];
+    badgeEl.textContent = ev.badge;
+    unitEl.textContent = ev.unit;
+    routeEl.textContent = ev.route;
+    if (counterEl) counterEl.textContent = `${i + 1} / ${events.length}`;
   }
 
-  const tiltCards = document.querySelectorAll('[data-tilt="true"]');
+  let intervalId = setInterval(() => {
+    if (paused || document.body.classList.contains('reduce-motion')) return;
+    idx = (idx + 1) % events.length;
+    render(idx);
+  }, 3200);
 
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-
-      const rotateX = (-y / (rect.height / 2)) * 8; // max 8 deg
-      const rotateY = (x / (rect.width / 2)) * 8;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  if (card) {
+    card.addEventListener('mouseenter', () => {
+      if (!paused && !document.body.classList.contains('reduce-motion')) {
+        idx = 0;
+        render(idx);
+      }
     });
+  }
 
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', () => {
+      paused = !paused;
+      pauseBtn.textContent = paused ? '▶' : '❚❚';
+      pauseBtn.setAttribute('aria-label', paused ? 'Reanudar monitor de despacho en vivo' : 'Pausar monitor de despacho en vivo');
     });
-  });
+  }
 }
 
 /* ==========================================================================
@@ -128,6 +142,10 @@ function init3DCardPhysics() {
 function initCounters() {
   const counterEls = document.querySelectorAll('[data-counter-target]');
   if (!counterEls.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.body.classList.contains('reduce-motion')) {
+    return;
+  }
 
   let hasAnimated = false;
 
@@ -149,16 +167,14 @@ function initCounters() {
     const target = parseInt(el.getAttribute('data-counter-target'), 10);
     const prefix = el.getAttribute('data-counter-prefix') || '';
     const suffix = el.getAttribute('data-counter-suffix') || '';
-    const duration = 2000;
-    const start = 0;
+    const duration = 1100;
     const startTime = performance.now();
 
     function step(currentTime) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const ease = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(start + (target - start) * ease);
+      const current = Math.floor(target * ease);
 
       el.textContent = `${prefix}${current.toLocaleString('es-AR')}${suffix}`;
 
@@ -187,79 +203,48 @@ function initSavingsCalculator() {
 
   if (!kmSlider || !resultDisplay) return;
 
-  // Toggle button state handlers
   [toggleYpf, toggleHotels, toggleTow, togglePaperwork].forEach(btn => {
     if (!btn) return;
     btn.addEventListener('click', () => {
-      btn.classList.toggle('active');
+      const isNowActive = btn.classList.toggle('active');
+      btn.setAttribute('aria-pressed', String(isNowActive));
       calculateSavings();
     });
   });
 
   kmSlider.addEventListener('input', () => {
     if (kmValue) {
-      kmValue.textContent = `${parseInt(kmSlider.value).toLocaleString('es-AR')} km/mes`;
+      kmValue.textContent = `${parseInt(kmSlider.value, 10).toLocaleString('es-AR')} km/mes`;
     }
     calculateSavings();
   });
 
   function calculateSavings() {
     const km = parseInt(kmSlider.value, 10);
-    
-    // Base promo gift: $48.000 in fuel
     let annualSavings = 48000;
 
-    // Fuel saving calculation (approx 9L per 100km, ACA/YPF regular 5% promo)
     if (toggleYpf && toggleYpf.classList.contains('active')) {
       const litersPerMonth = (km / 100) * 9;
-      const avgFuelPrice = 1150; // Argentine pesos avg super/infinia
+      const avgFuelPrice = 1150;
       const fuelDiscountPerMonth = litersPerMonth * avgFuelPrice * 0.05;
-      annualSavings += fuelDiscountPerMonth * 12;
+      annualSavings += Math.round(fuelDiscountPerMonth * 12);
     }
 
-    // Hotel vacation savings (approx 1 trip = $75.000 discount in ACA partner hotels)
     if (toggleHotels && toggleHotels.classList.contains('active')) {
       annualSavings += 95000;
     }
 
-    // Towing / emergency coverage savings (1 private tow avoidance = $85.000)
     if (toggleTow && toggleTow.classList.contains('active')) {
-      annualSavings += 85000;
+      annualSavings += 120000;
     }
 
-    // Trámites & Licencias (DNI, registro, permiso internacional savings = $32.000)
     if (togglePaperwork && togglePaperwork.classList.contains('active')) {
-      annualSavings += 32000;
+      annualSavings += 35000;
     }
 
-    // Animate the result text smoothly
-    animateValue(resultDisplay, annualSavings);
+    resultDisplay.textContent = `$${annualSavings.toLocaleString('es-AR')}`;
   }
 
-  function animateValue(element, finalValue) {
-    const current = parseInt(element.textContent.replace(/[^0-9]/g, '')) || 0;
-    const duration = 600;
-    const startTime = performance.now();
-
-    function step(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 2);
-      const val = Math.floor(current + (finalValue - current) * ease);
-
-      element.textContent = `$${val.toLocaleString('es-AR')}`;
-
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        element.textContent = `$${finalValue.toLocaleString('es-AR')}`;
-      }
-    }
-
-    requestAnimationFrame(step);
-  }
-
-  // Initial run
   calculateSavings();
 }
 
@@ -274,9 +259,12 @@ function initBenefitsFilter() {
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Toggle active style
-      filterBtns.forEach(b => b.classList.remove('active'));
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
 
       const filterValue = btn.getAttribute('data-filter');
 
@@ -284,16 +272,8 @@ function initBenefitsFilter() {
         const category = card.getAttribute('data-category');
         if (filterValue === 'all' || category === filterValue) {
           card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0) scale(1)';
-          }, 20);
         } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(12px) scale(0.96)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 200);
+          card.style.display = 'none';
         }
       });
     });
@@ -317,7 +297,6 @@ function initLeadFormWizard() {
   let currentStep = 1;
   const totalSteps = stepPanels.length;
 
-  // Radio tiles selection UI
   const radioLabels = document.querySelectorAll('.radio-tile-label');
   radioLabels.forEach(label => {
     const radio = label.querySelector('input[type="radio"]');
@@ -371,7 +350,7 @@ function initLeadFormWizard() {
 
   function updateWizardUI() {
     stepPanels.forEach(p => {
-      if (parseInt(p.getAttribute('data-step')) === currentStep) {
+      if (parseInt(p.getAttribute('data-step'), 10) === currentStep) {
         p.style.display = 'block';
       } else {
         p.style.display = 'none';
@@ -405,11 +384,10 @@ function initLeadFormWizard() {
     e.preventDefault();
     if (!validateStep(currentStep)) return;
 
-    // Simulate submission celebration with Confetti
-    if (typeof confetti === 'function') {
+    if (typeof confetti === 'function' && !document.body.classList.contains('reduce-motion')) {
       confetti({
-        particleCount: 120,
-        spread: 70,
+        particleCount: 100,
+        spread: 65,
         origin: { y: 0.6 }
       });
     }
@@ -438,20 +416,23 @@ function initFaqAccordion() {
     trigger.addEventListener('click', () => {
       const isOpen = item.classList.contains('active');
 
-      // Close all other items for clean accordion UX
       faqItems.forEach(otherItem => {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
+          const otherTrig = otherItem.querySelector('.faq-trigger');
           const otherAns = otherItem.querySelector('.faq-answer');
+          if (otherTrig) otherTrig.setAttribute('aria-expanded', 'false');
           if (otherAns) otherAns.style.maxHeight = null;
         }
       });
 
       if (isOpen) {
         item.classList.remove('active');
+        trigger.setAttribute('aria-expanded', 'false');
         answer.style.maxHeight = null;
       } else {
         item.classList.add('active');
+        trigger.setAttribute('aria-expanded', 'true');
         answer.style.maxHeight = answer.scrollHeight + 30 + 'px';
       }
     });
@@ -512,61 +493,21 @@ function initModals() {
 }
 
 /* ==========================================================================
-   10. ACCESSIBILITY CONTROLS
+   10. LIGHT MODE ENFORCEMENT & REDUCED MOTION
    ========================================================================== */
 function initAccessibilityControls() {
-  const a11yToggle = document.getElementById('a11y-menu-toggle');
-  const contrastToggle = document.getElementById('btn-toggle-contrast');
-  const fontToggle = document.getElementById('btn-toggle-font');
-  const motionToggle = document.getElementById('btn-toggle-motion');
-  const a11yDropdown = document.getElementById('a11y-dropdown');
+  document.documentElement.classList.remove('dark');
+  document.body.classList.remove('dark', 'high-contrast', 'font-large');
 
-  // Stored preferences
-  if (localStorage.getItem('aca_high_contrast') === 'true') {
-    document.body.classList.add('high-contrast');
-  }
-  if (localStorage.getItem('aca_large_font') === 'true') {
-    document.body.classList.add('font-large');
-  }
-  if (localStorage.getItem('aca_reduce_motion') === 'true') {
+  try {
+    localStorage.removeItem('aca_high_contrast');
+    localStorage.removeItem('aca_large_font');
+    localStorage.removeItem('lasaeta_theme');
+    localStorage.removeItem('aca_theme_dark');
+  } catch (e) {}
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.body.classList.add('reduce-motion');
-  }
-
-  if (a11yToggle && a11yDropdown) {
-    a11yToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isVisible = a11yDropdown.style.display === 'block';
-      a11yDropdown.style.display = isVisible ? 'none' : 'block';
-    });
-
-    document.addEventListener('click', () => {
-      a11yDropdown.style.display = 'none';
-    });
-
-    a11yDropdown.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-  }
-
-  if (contrastToggle) {
-    contrastToggle.addEventListener('click', () => {
-      const isActive = document.body.classList.toggle('high-contrast');
-      localStorage.setItem('aca_high_contrast', isActive);
-    });
-  }
-
-  if (fontToggle) {
-    fontToggle.addEventListener('click', () => {
-      const isLarge = document.body.classList.toggle('font-large');
-      localStorage.setItem('aca_large_font', isLarge);
-    });
-  }
-
-  if (motionToggle) {
-    motionToggle.addEventListener('click', () => {
-      const isReduced = document.body.classList.toggle('reduce-motion');
-      localStorage.setItem('aca_reduce_motion', isReduced);
-    });
   }
 }
 
@@ -613,14 +554,13 @@ function initMobileNav() {
       navLinks.style.top = '100%';
       navLinks.style.left = '0';
       navLinks.style.width = '100%';
-      navLinks.style.background = '#FFFFFF';
+      navLinks.style.backgroundColor = '#FFFFFF';
       navLinks.style.padding = '24px';
       navLinks.style.boxShadow = 'var(--shadow-lg)';
       navLinks.style.gap = '16px';
     }
   });
 
-  // Close when clicking any nav link
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth <= 768) {

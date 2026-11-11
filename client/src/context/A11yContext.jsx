@@ -3,70 +3,53 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
+  const isDarkMode = false;
+  const largeFont = false;
+
+  const [reducedMotion, setReducedMotion] = useState(() => {
     try {
-      localStorage.removeItem('aca_theme_dark');
-      const saved = localStorage.getItem('lasaeta_theme');
-      if (saved !== null) {
-        return saved === 'dark';
+      const saved = localStorage.getItem('aca_reduced_motion');
+      if (saved !== null) return saved === 'true';
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       }
     } catch (e) {}
-    // Default strictly to Light Mode (the user can toggle it)
     return false;
   });
 
-  const [largeFont, setLargeFont] = useState(() => {
-    return localStorage.getItem('aca_large_font') === 'true';
-  });
-
-  const [reducedMotion, setReducedMotion] = useState(() => {
-    return localStorage.getItem('aca_reduced_motion') === 'true';
-  });
-
-  // Apply dark mode class to html element
+  // Enforce light mode permanently
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDarkMode) {
-      root.classList.add('dark');
-      document.body.classList.add('dark');
-      try {
-        localStorage.setItem('lasaeta_theme', 'dark');
-      } catch (e) {}
+    document.documentElement.classList.remove('dark');
+    document.body.classList.remove('dark', 'font-large', 'high-contrast');
+    try {
+      localStorage.removeItem('aca_theme_dark');
+      localStorage.removeItem('lasaeta_theme');
+      localStorage.removeItem('aca_large_font');
+    } catch (e) {}
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      document.body.classList.add('reduce-motion');
     } else {
-      root.classList.remove('dark');
-      document.body.classList.remove('dark');
-      try {
-        localStorage.setItem('lasaeta_theme', 'light');
-      } catch (e) {}
+      document.body.classList.remove('reduce-motion');
     }
-  }, [isDarkMode]);
-
-  useEffect(() => {
-    if (largeFont) {
-      document.body.classList.add('font-large');
-    } else {
-      document.body.classList.remove('font-large');
-    }
-    localStorage.setItem('aca_large_font', largeFont);
-  }, [largeFont]);
-
-  useEffect(() => {
-    localStorage.setItem('aca_reduced_motion', reducedMotion);
+    try {
+      localStorage.setItem('aca_reduced_motion', String(reducedMotion));
+    } catch (e) {}
   }, [reducedMotion]);
 
-  const toggleDarkMode = () => setIsDarkMode(prev => !prev);
-  const toggleFont = () => setLargeFont(prev => !prev);
-  const toggleMotion = () => setReducedMotion(prev => !prev);
+  const toggleMotion = () => setReducedMotion((prev) => !prev);
 
   return (
-    <ThemeContext.Provider value={{
-      isDarkMode,
-      toggleDarkMode,
-      largeFont,
-      toggleFont,
-      reducedMotion,
-      toggleMotion
-    }}>
+    <ThemeContext.Provider
+      value={{
+        isDarkMode,
+        largeFont,
+        reducedMotion,
+        toggleMotion,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

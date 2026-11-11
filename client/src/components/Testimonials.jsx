@@ -24,18 +24,15 @@ export default function Testimonials() {
   ];
 
   return (
-    <section id="testimonios" className="py-20 bg-white dark:bg-slate-900 transition-colors" aria-labelledby="testimonials-title">
+    <section id="testimonios" className="py-20 lg:py-24 bg-white dark:bg-slate-900 transition-colors" aria-labelledby="testimonials-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="inline-block bg-red-100 dark:bg-red-950/60 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
-            Opiniones Reales
-          </span>
-          <h2 id="testimonials-title" className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 dark:text-white mb-4">
+          <h2 id="testimonials-title" className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[2.65rem] text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
             ¿Qué dicen nuestros Socios?
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
-            Historias auténticas de conductores que confían en el ACA para cada viaje cotidiano y sus vacaciones.
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            Historias reales de conductores que confían en el Automóvil Club Argentino en cada viaje cotidiano y en sus vacaciones.
           </p>
         </div>
 
@@ -43,26 +40,43 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <SpotlightCard
               key={t.name}
-              spotlightColor="rgba(229, 25, 55, 0.1)"
-              className="p-6 sm:p-8 flex flex-col justify-between"
+              spotlightColor="rgba(229, 25, 55, 0.08)"
+              className="p-7 sm:p-8 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <img src="/assets/Google.png" alt="Google Review" className="h-5 w-auto" />
-                  <img src="/assets/Star.svg" alt="5 estrellas" className="h-4 w-auto" />
+                <div className="flex items-center justify-between mb-5">
+                  <img
+                    src="/assets/Google.png"
+                    alt="Reseña en Google"
+                    width="74"
+                    height="24"
+                    className="h-5 w-auto"
+                    loading="lazy"
+                  />
+                  <img
+                    src="/assets/Star.svg"
+                    alt="Calificación 5 estrellas"
+                    width="96"
+                    height="18"
+                    className="h-4 w-auto"
+                    loading="lazy"
+                  />
                 </div>
-                <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 italic leading-relaxed mb-6">
+                <p className="text-base text-slate-800 dark:text-slate-100 leading-relaxed mb-6">
                   {t.quote}
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
-                <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 font-extrabold flex items-center justify-center text-sm">
+              <div className="flex items-center gap-3.5 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <div
+                  className="w-11 h-11 rounded-full bg-amber-100 dark:bg-slate-800 text-slate-950 dark:text-amber-400 font-extrabold flex items-center justify-center text-base shrink-0"
+                  aria-hidden="true"
+                >
                   {t.initial}
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white">{t.name}</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{t.role}</p>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">{t.name}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">{t.role}</p>
                 </div>
               </div>
             </SpotlightCard>

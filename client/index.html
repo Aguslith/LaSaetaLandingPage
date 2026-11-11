@@ -12,12 +12,9 @@
       (function() {
         try {
           localStorage.removeItem('aca_theme_dark');
-          var theme = localStorage.getItem('lasaeta_theme');
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
+          localStorage.removeItem('lasaeta_theme');
+          localStorage.removeItem('aca_large_font');
+          document.documentElement.classList.remove('dark');
         } catch (e) {}
       })();
     </script>

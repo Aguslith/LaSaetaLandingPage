@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { A11yProvider } from './context/A11yContext';
+import TopBanner from './components/TopBanner';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import StatsBanner from './components/StatsBanner';
 import BenefitsGrid from './components/BenefitsGrid';
 import PlansSection from './components/PlansSection';
+import SavingsCalculator from './components/SavingsCalculator';
 import CoverageMap from './components/CoverageMap';
 import Testimonials from './components/Testimonials';
 import LeadWizardForm from './components/LeadWizardForm';
@@ -19,9 +21,17 @@ export default function App() {
 
   return (
     <A11yProvider>
-      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-body selection:bg-red-500 selection:text-white transition-colors duration-300">
+      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white font-body transition-colors duration-200">
         
-        {/* Sticky Glassmorphism Header with Night Mode Switch */}
+        {/* Accessible Skip-to-Content Link (WCAG 2.2 AA & taste-skill) */}
+        <a href="#main-content" className="skip-link">
+          Saltar al contenido principal
+        </a>
+
+        {/* Top Promotional Urgency Bar */}
+        <TopBanner />
+
+        {/* Sticky Header with A11y & Theme Controls */}
         <Navbar />
 
         {/* Main Content Areas */}
@@ -30,6 +40,7 @@ export default function App() {
           <StatsBanner />
           <BenefitsGrid />
           <PlansSection />
+          <SavingsCalculator />
           <CoverageMap />
           <Testimonials />
           <LeadWizardForm />
